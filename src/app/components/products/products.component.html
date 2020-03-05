@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="row">
+        <div class="col-5 mt-2">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Agregar Producto</h4>
+                    <form #productForm="ngForm" (ngSubmit)="addProduct(productForm)">
+                        <div class="row">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Producto</span>
+                                </div>
+                                <input type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="productService.selectedProduct.name">
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Precio</span>
+                                </div>
+                                <input type="text" class="form-control" name="price" #price="ngModel" [(ngModel)]="productService.selectedProduct.price">
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Categoria</span>
+                                </div>
+                                <input type="text" class="form-control" name="category" #category="ngModel" [(ngModel)]="productService.selectedProduct.category">
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Cantidad</span>
+                                </div>
+                                <input type="text" class="form-control" name="stock" #stock="ngModel" [(ngModel)]="productService.selectedProduct.stock">
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <button class="btn btn-success">Guardar</button>
+                                    <button class="btn btn-primary float-right
+                                    " (click)="resetForm(productForm)">Limpiar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-7">
+            <h4>Productos</h4>
+            <div class="card mb-2 border border-success" *ngFor="let product of productService.products">
+                <h5 class="card-header">{{product.name}}</h5>
+                <div class="card-body">
+                  <h5 class="card-title">{{product.category}}</h5>
+                  <table class="table table-sm table-dark">
+                    <thead>
+                      <tr>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Cantidad</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{product.price}}</td>
+                        <td>{{product.stock}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <a href="" class="btn btn-primary" (click)="deleteProduct(product._id)"><i class="material-icons">delete</i></a>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
